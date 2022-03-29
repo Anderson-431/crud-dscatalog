@@ -3,9 +3,19 @@ package com.example.dscatalog2.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_category")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	
@@ -61,7 +71,11 @@ public class Category implements Serializable {
 	Equals e Hascode: A comparação de objetos é feita através do resultado do 
 	método equals() . A implementação correta do hashCode() é aquela que sempre
  	retorna o mesmo  valor quando chamado para um mesmo objeto, de acordo com
-  	o contrato do hashCode(
+  	o contrato do hashCode
+  	
+  	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) : anotation para deixar o ID 
+	auto-incrementavel 
 
 
 */
