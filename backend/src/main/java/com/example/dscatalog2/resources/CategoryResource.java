@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,13 @@ public class CategoryResource {
 	public ResponseEntity<List<CategoryDTO>> findAll(){
 		List<CategoryDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
+	}
+	
+	//Metodo para buscar uma categoria por Id
+	@GetMapping(value = "/{id}")
+	public ResponseEntity <CategoryDTO> findById(@PathVariable Long id){
+		CategoryDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
 	}
 	
 
@@ -55,6 +63,9 @@ public class CategoryResource {
    .ok() : É um método builder do ResponseEntity para que a resposta seja 200 "realizada com sucesso".
    
    .body() : É um método que define o corpo da resposta
+   
+   @PathVariable = Serve para casar a variavel que está na rota, exemplo: @GetMapping(value = "/{id}") com 
+   a variavel do java (@PathVariable Long id).
    
    	
 */
