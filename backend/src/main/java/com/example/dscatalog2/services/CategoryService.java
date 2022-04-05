@@ -5,8 +5,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.dscatalog2.dto.CategoryDTO;
 import com.example.dscatalog2.entities.Category;
@@ -34,6 +37,15 @@ public class CategoryService {
 		return new CategoryDTO(entity);
 	}
 
+	@Transactional
+	public CategoryDTO insert(CategoryDTO dto) {
+		Category entity = new Category();
+		entity.setName(dto.getName());
+		entity = repository.save(entity);
+		return new CategoryDTO(entity);
+	}
+	
+	
 }
 
 /* @Transactional(readOnly = true): O parâmetro “readOnly” na anotação @Transactional 
